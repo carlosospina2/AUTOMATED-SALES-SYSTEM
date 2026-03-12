@@ -1,23 +1,29 @@
-from record_sales import record_sales
+from record_sales import record_sales 
 
-def continue_shopping():    
-    list = []
-    run = True
-    while run:
-        opcion = input("Do you want to buy something? (yes/no): ")
-        if opcion == "yes":
-            item = record_sales()
-            list.append(item)
-            print("Product successfully registered.")
-        elif opcion == "no":
-            print("\n--- SUMMARY OF YOUR PURCHASE ---")
-            total_ending = 0
-            for i in list:
-                print(f"Product: {i[0]} | Unit price: {i[1]} | Amount: {i[2]} | Total to pay: {i[3]}")
-                total_ending = total_ending + i[3]
+def ContinueShopping():    
+    purchase_history = []
+    running = True
+
+    while running:
+        answer = input("Do you want to buy something? (yes/no): ").strip().lower()
+
+        if answer == "yes":
+            product_data = record_sales()
+            purchase_history.append(product_data)
+            print("Product registered successfully.")
+
+        elif answer == "no":
+            print("\n--- PURCHASE SUMMARY ---")
+            final_total = 0
+
+            for item in purchase_history:
+                print(f"Product: {item[0]} | Unit Price: {item[1]} | Quantity: {item[2]} | Total to pay: {item[3]}")
+                final_total = final_total + item[3]
+
             print("-" * 30)
-            print("final total to pay: $", total_ending)
-            print("Thank you for your purchase, Come back soon")
-            run = False
+            print("FINAL TOTAL TO PAY: $", final_total)
+            print("Thank you for your purchase, come back soon")
+            running = False
+
         else:
-            print("ERROR!!! Just enter yes o no")
+            print("ERROR!!! Only enter yes or no")

@@ -1,2 +1,2 @@
-from continue_shopping import continue_shopping
-continue_shopping()
+from continue_shopping import ContinueShopping
+ContinueShopping()
